@@ -1,6 +1,6 @@
 const path = require('path');
 const TerserPlugin = require("terser-webpack-plugin");
-
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin")
 module.exports = {
   entry: './src/index.ts',
   devtool: "source-map",
@@ -27,8 +27,10 @@ module.exports = {
    
     })],
   },
+  plugins: [new NodePolyfillPlugin()],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'build'),
   },
+  target: 'node',
 };
